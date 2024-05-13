@@ -39,8 +39,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             WSNavigationTheme {
-
+                    //Erstellung des NavControllers
                     val navController = rememberNavController()
+
+                    //Erstellung des NavHosts und Destinations
                     NavHost(navController = navController, startDestination = "home"){
                         composable("home"){
                             HomeScreen(navController)
@@ -59,7 +61,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
+//Screen Composable
 @Composable
 fun HomeScreen(navController: NavHostController) {
     Column(
@@ -71,6 +73,7 @@ fun HomeScreen(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //Weiterleitung zum ProfileScreen
         Button(
             onClick = {
                 navController.navigate("profile")
@@ -93,6 +96,7 @@ fun ProfileScreen(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //Weiterleitung zum DetailScreen
         Button(
             onClick = {
                 //navController.popBackStack()
@@ -101,6 +105,8 @@ fun ProfileScreen(navController: NavHostController) {
             Text(text = "Go to DetailScreen")
         }
 
+        //Button mit selbst eingefügtem Icon
+        //Zurückleitung zum vorherigen Screen
         IconButton(
             onClick = {
                 navController.popBackStack()
@@ -122,6 +128,7 @@ fun DetailScreen(navController: NavHostController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        //ein Eintrag vom Backstack wird entfernt --> Weiterleitung zum vorherigen Screen (Profilscreen)
         Button(
             onClick = {
                 navController.popBackStack()
